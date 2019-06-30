@@ -38,6 +38,3 @@ Second is output image path
 ```
 dotnet run -- "./image.png" "./laplacian.png"
 ```
-
-### Notes:
-It will create 
