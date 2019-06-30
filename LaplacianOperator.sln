@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaplacianOperator", "LaplacianOperator.csproj", "{7C0EFFD2-48C2-4C83-86E7-645E833D42A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixEssentials", "..\MatrixEssentials\MatrixEssentials.csproj", "{228834D3-A0D8-4CE6-88A3-EC3B6837A82B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaussianFilter", "..\GaussianFilter\GaussianFilter.csproj", "{A8F4B65D-0B6E-4168-8C71-BD6F50FBFB8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C0EFFD2-48C2-4C83-86E7-645E833D42A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C0EFFD2-48C2-4C83-86E7-645E833D42A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C0EFFD2-48C2-4C83-86E7-645E833D42A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C0EFFD2-48C2-4C83-86E7-645E833D42A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{228834D3-A0D8-4CE6-88A3-EC3B6837A82B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228834D3-A0D8-4CE6-88A3-EC3B6837A82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228834D3-A0D8-4CE6-88A3-EC3B6837A82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228834D3-A0D8-4CE6-88A3-EC3B6837A82B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F4B65D-0B6E-4168-8C71-BD6F50FBFB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F4B65D-0B6E-4168-8C71-BD6F50FBFB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F4B65D-0B6E-4168-8C71-BD6F50FBFB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F4B65D-0B6E-4168-8C71-BD6F50FBFB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
