@@ -1,9 +1,13 @@
 # Laplacian operator filter
 
 Filter using my MatrixEssentials project and GaussianFilter project in order to apply laplacian operator filter on image
+Before: 
 
-[](image2.png)
-[](result.png)
+<img src="image2.jpg" width="300"/>
+
+After:
+
+<img src="result.png" width="300"/>
 
 ## Requirements
 - .netcore >= 2.2 
