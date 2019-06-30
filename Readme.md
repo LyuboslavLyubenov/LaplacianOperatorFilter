@@ -2,6 +2,9 @@
 
 Filter using my MatrixEssentials project and GaussianFilter project in order to apply laplacian operator filter on image
 
+[](image2.png)
+[](result.png)
+
 ## Requirements
 - .netcore >= 2.2 
 - GaussianFilter
