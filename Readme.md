@@ -1,6 +1,13 @@
 # Laplacian operator filter
 
 Filter using my MatrixEssentials project and GaussianFilter project in order to apply laplacian operator filter on image
+Before: 
+
+<img src="image2.jpg" width="300"/>
+
+After:
+
+<img src="result.png" width="300"/>
 
 ## Requirements
 - .netcore >= 2.2 
@@ -31,6 +38,3 @@ Second is output image path
 ```
 dotnet run -- "./image.png" "./laplacian.png"
 ```
-
-### Notes:
-It will create 
