@@ -29,17 +29,17 @@ namespace LaplacianOperator
             MakeGrayScale(imageDirectoryPath + "/gauss.png", imageDirectoryPath + "/gauss-grayscale.png");
             
             var gaussMatrix = MatrixUtils.CreateMatrixFromImage(imageDirectoryPath + "/gauss-grayscale.png");
-            var kernel = new List<IList<IMatrixData>>()
+            var kernel = new IMatrixData[3][]
             {
-                new[]
+                new IMatrixData[]
                 {
                     new FloatNumberMatrixData(1), new FloatNumberMatrixData(1), new FloatNumberMatrixData(1),
                 },
-                new[]
+                new IMatrixData[]
                 {
                     new FloatNumberMatrixData(1), new FloatNumberMatrixData(-8), new FloatNumberMatrixData(1),
                 },
-                new[]
+                new IMatrixData[]
                 {
                     new FloatNumberMatrixData(1), new FloatNumberMatrixData(1), new FloatNumberMatrixData(1),
                 }
