@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -12,6 +13,8 @@ namespace LaplacianOperator
     {
         static void Main(string[] args)
         {
+            var stopwatch = new Stopwatch();
+            
             var imagePath = args[0];
             var outputImagePath = args[1];
             
@@ -21,43 +24,68 @@ namespace LaplacianOperator
             }
 
             var imageDirectoryPath = Path.GetDirectoryName(imagePath);
-
-            Console.WriteLine();
             
-            new GaussianFilter.GaussianFilter().Apply(imagePath, imageDirectoryPath + "/gauss.png", 7, 0.6f);
-
-            MakeGrayScale(imageDirectoryPath + "/gauss.png", imageDirectoryPath + "/gauss-grayscale.png");
+            stopwatch.Start();
             
-            var gaussMatrix = MatrixUtils.CreateMatrixFromImage(imageDirectoryPath + "/gauss-grayscale.png");
+            MakeGrayScale(imagePath, imageDirectoryPath + "/grayscale.png");
+
+            PrintMeasured(stopwatch, "Grayscale");
+ 
+            stopwatch.Restart();
+            
+            var gaussMatrix = new GaussianFilter.GaussianFilter().Apply(imageDirectoryPath + "/grayscale.png", 3, 0.6f);
+
+            PrintMeasured(stopwatch, "Gauss");
+            
+            stopwatch.Restart();
+
             var kernel = new IMatrixData[3][]
             {
                 new IMatrixData[]
                 {
-                    new FloatNumberMatrixData(1), new FloatNumberMatrixData(1), new FloatNumberMatrixData(1),
+                    new IntegerNumberMatrixData(1), new IntegerNumberMatrixData(1), new IntegerNumberMatrixData(1),
                 },
                 new IMatrixData[]
                 {
-                    new FloatNumberMatrixData(1), new FloatNumberMatrixData(-8), new FloatNumberMatrixData(1),
+                    new IntegerNumberMatrixData(1), new IntegerNumberMatrixData(-8), new IntegerNumberMatrixData(1),
                 },
                 new IMatrixData[]
                 {
-                    new FloatNumberMatrixData(1), new FloatNumberMatrixData(1), new FloatNumberMatrixData(1),
+                    new IntegerNumberMatrixData(1), new IntegerNumberMatrixData(1), new IntegerNumberMatrixData(1),
                 }
             };
             var kernelMatrix = new Matrix(kernel);
             var convoluted = gaussMatrix.Convolute(kernelMatrix);
             
+            PrintMeasured(stopwatch, "Convolution");
+            
+            stopwatch.Restart();
+            
             SecondPass(convoluted);
             
+            PrintMeasured(stopwatch, "Second pass");
+            
+            stopwatch.Restart();
+            
             var endResult = MatrixUtils.ConvertMatrixToRGBMatrix(convoluted);
-
+            
             MatrixUtils.CreateImageFromMatrix(endResult, outputImagePath);
             
+            PrintMeasured(stopwatch, "To image");
+            
+            stopwatch.Stop();
+
             //clean garbage
-            File.Delete(imageDirectoryPath + "gauss.png");
-            File.Delete(imageDirectoryPath + "gauss-grayscale.png");
+            File.Delete(imageDirectoryPath + "/grayscale.png");
         }
-        
+
+        static void PrintMeasured(Stopwatch stopwatch, string printMessage)
+        {
+            Console.WriteLine(printMessage);
+            Console.WriteLine(stopwatch.ElapsedMilliseconds + " milliseconds");
+            Console.WriteLine();
+        }
+
         //https://web.archive.org/web/20110827032809/http://www.switchonthecode.com/tutorials/csharp-tutorial-convert-a-color-image-to-grayscale
         static void MakeGrayScale(string imagePath, string grayscaleImagePath)
         {
