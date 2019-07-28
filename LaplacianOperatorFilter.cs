@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading.Tasks;
 using MatrixEssentials;
 
 namespace LaplacianOperator
@@ -53,15 +54,15 @@ namespace LaplacianOperator
         {
             var highestValue = matrix.HighestValue;
 
-            for (int i = 0; i < matrix.Height; i++)
+            Parallel.For(0, matrix.Height, (int i) =>
             {
                 for (int j = 0; j < matrix.Width; j++)
                 {
                     var matrixValue = matrix.GetValue(j, i);
                     matrixValue = matrixValue.MultiplyBy(new FloatNumberMatrixData(255f).Divide(highestValue));
                     matrix.SetValue(j, i, matrixValue);
-                }
-            }
+                } 
+            });
         }
     }
 }
