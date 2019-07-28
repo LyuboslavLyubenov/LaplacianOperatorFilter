@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['laplacianoperator',['LaplacianOperator',['../de/d87/namespaceLaplacianOperator.html',1,'']]],
-  ['laplacianoperator_2eassemblyinfo_2ecs',['LaplacianOperator.AssemblyInfo.cs',['../d9/dc0/LaplacianOperator_8AssemblyInfo_8cs.html',1,'']]],
-  ['laplacian_20operator_20filter',['Laplacian operator filter',['../d9/db8/md_Readme.html',1,'']]]
+  ['apply',['Apply',['../dc/da5/classLaplacianOperator_1_1LaplacianOperatorFilter.html#a70fef5fa4308e68481649008a571f90c',1,'LaplacianOperator.LaplacianOperatorFilter.Apply(string imagePath, string outputImagePath)'],['../dc/da5/classLaplacianOperator_1_1LaplacianOperatorFilter.html#a2e89c4d432b321d5deb62a0d9771b8bf',1,'LaplacianOperator.LaplacianOperatorFilter.Apply(string imagePath)']]]
 ];

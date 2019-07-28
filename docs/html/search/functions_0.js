@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main',['Main',['../df/d48/classLaplacianOperator_1_1Program.html#a7019d4926c2aca3e3da83de7d550333b',1,'LaplacianOperator::Program']]],
-  ['makegrayscale',['MakeGrayScale',['../df/d48/classLaplacianOperator_1_1Program.html#a9b83fd22c9d0c072526453fda80ed4c3',1,'LaplacianOperator::Program']]]
+  ['apply',['Apply',['../dc/da5/classLaplacianOperator_1_1LaplacianOperatorFilter.html#a70fef5fa4308e68481649008a571f90c',1,'LaplacianOperator.LaplacianOperatorFilter.Apply(string imagePath, string outputImagePath)'],['../dc/da5/classLaplacianOperator_1_1LaplacianOperatorFilter.html#a2e89c4d432b321d5deb62a0d9771b8bf',1,'LaplacianOperator.LaplacianOperatorFilter.Apply(string imagePath)']]]
 ];

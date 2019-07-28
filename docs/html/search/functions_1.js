@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['printmeasured',['PrintMeasured',['../df/d48/classLaplacianOperator_1_1Program.html#a54e31b9e846b01df973fa34969a41656',1,'LaplacianOperator::Program']]]
+  ['main',['Main',['../df/d48/classLaplacianOperator_1_1Program.html#a7019d4926c2aca3e3da83de7d550333b',1,'LaplacianOperator::Program']]]
 ];
