@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading.Tasks;
 using MatrixEssentials;
 
 namespace LaplacianOperator
@@ -24,8 +25,6 @@ namespace LaplacianOperator
         /// <returns>matrix made from original image matrix and applied laplacian operator on it</returns>
         public IMatrix Apply(string imagePath)
         {
-            var imageDirectoryPath = Path.GetDirectoryName(imagePath);
-            
             var gaussMatrix = new GaussianFilter.GaussianFilter().Apply(imagePath, 3, 0.5f);
 
             var kernel = new IMatrixData[3][]
@@ -44,8 +43,8 @@ namespace LaplacianOperator
                 }
             };
             var kernelMatrix = new Matrix(kernel);
-            var convoluted = gaussMatrix.Convolute(kernelMatrix);
-
+            var convoluted = gaussMatrix.ConvoluteParalleled(kernelMatrix);
+            
             SecondPass(convoluted);
             
             return convoluted;
@@ -55,15 +54,15 @@ namespace LaplacianOperator
         {
             var highestValue = matrix.HighestValue;
 
-            for (int i = 0; i < matrix.Height; i++)
+            Parallel.For(0, matrix.Height, (int i) =>
             {
                 for (int j = 0; j < matrix.Width; j++)
                 {
                     var matrixValue = matrix.GetValue(j, i);
                     matrixValue = matrixValue.MultiplyBy(new FloatNumberMatrixData(255f).Divide(highestValue));
                     matrix.SetValue(j, i, matrixValue);
-                }
-            }
+                } 
+            });
         }
     }
 }
