@@ -24,8 +24,6 @@ namespace LaplacianOperator
         /// <returns>matrix made from original image matrix and applied laplacian operator on it</returns>
         public IMatrix Apply(string imagePath)
         {
-            var imageDirectoryPath = Path.GetDirectoryName(imagePath);
-            
             var gaussMatrix = new GaussianFilter.GaussianFilter().Apply(imagePath, 3, 0.5f);
 
             var kernel = new IMatrixData[3][]
@@ -54,13 +52,14 @@ namespace LaplacianOperator
         private void SecondPass(IMatrix matrix)
         {
             var highestValue = matrix.HighestValue;
+            var arithmeticsController = highestValue.GetArithmeticsController();
 
             for (int i = 0; i < matrix.Height; i++)
             {
                 for (int j = 0; j < matrix.Width; j++)
                 {
                     var matrixValue = matrix.GetValue(j, i);
-                    matrixValue = matrixValue.MultiplyBy(new FloatNumberMatrixData(255f).Divide(highestValue));
+                    matrixValue = arithmeticsController.Multiply(matrixValue, arithmeticsController.Divide(new FloatNumberMatrixData(255), highestValue));
                     matrix.SetValue(j, i, matrixValue);
                 }
             }
