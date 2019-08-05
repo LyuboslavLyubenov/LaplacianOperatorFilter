@@ -15,7 +15,7 @@ namespace LaplacianOperator
         {
             var endResult = this.Apply(imagePath);
             var endResultRGBMatrix = MatrixUtils.ConvertMatrixToRGBMatrix(endResult);
-            MatrixUtils.CreateImageFromMatrix(endResultRGBMatrix, outputImagePath);
+            MatrixUtils.CreateImageFromMatrixParalleled(endResultRGBMatrix, outputImagePath);
         }
 
         /// <summary>
