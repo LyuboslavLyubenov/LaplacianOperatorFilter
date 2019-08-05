@@ -1,5 +1,6 @@
 using System.IO;
 using MatrixEssentials;
+using MatrixEssentials.Arithmetics;
 
 namespace LaplacianOperator
 {
@@ -42,7 +43,7 @@ namespace LaplacianOperator
                 }
             };
             var kernelMatrix = new Matrix(kernel);
-            var convoluted = gaussMatrix.Convolute(kernelMatrix);
+            var convoluted = gaussMatrix.ConvoluteParalleled(kernelMatrix);
 
             SecondPass(convoluted);
             
@@ -52,14 +53,15 @@ namespace LaplacianOperator
         private void SecondPass(IMatrix matrix)
         {
             var highestValue = matrix.HighestValue;
-            var arithmeticsController = highestValue.GetArithmeticsController();
+            var floatArithmeticsController = new FloatNumberMatrixDataArithmetics();
+            var unsafeRGBarithmeticsController = highestValue.GetArithmeticsController();
 
             for (int i = 0; i < matrix.Height; i++)
             {
                 for (int j = 0; j < matrix.Width; j++)
                 {
                     var matrixValue = matrix.GetValue(j, i);
-                    matrixValue = arithmeticsController.Multiply(matrixValue, arithmeticsController.Divide(new FloatNumberMatrixData(255), highestValue));
+                    matrixValue = unsafeRGBarithmeticsController.Multiply(matrixValue, floatArithmeticsController.Divide(new FloatNumberMatrixData(255), highestValue));
                     matrix.SetValue(j, i, matrixValue);
                 }
             }
