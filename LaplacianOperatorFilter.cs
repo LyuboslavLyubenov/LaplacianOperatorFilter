@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading.Tasks;
 using MatrixEssentials;
 using MatrixEssentials.Arithmetics;
 
@@ -15,7 +16,7 @@ namespace LaplacianOperator
         {
             var endResult = this.Apply(imagePath);
             var endResultRGBMatrix = MatrixUtils.ConvertMatrixToRGBMatrix(endResult);
-            MatrixUtils.CreateImageFromMatrix(endResultRGBMatrix, outputImagePath);
+            MatrixUtils.CreateImageFromMatrixParalleled(endResultRGBMatrix, outputImagePath);
         }
 
         /// <summary>
@@ -56,15 +57,15 @@ namespace LaplacianOperator
             var floatArithmeticsController = new FloatNumberMatrixDataArithmetics();
             var unsafeRGBarithmeticsController = highestValue.GetArithmeticsController();
 
-            for (int i = 0; i < matrix.Height; i++)
+            Parallel.For(0, matrix.Height, (int i) =>
             {
                 for (int j = 0; j < matrix.Width; j++)
                 {
                     var matrixValue = matrix.GetValue(j, i);
                     matrixValue = unsafeRGBarithmeticsController.Multiply(matrixValue, floatArithmeticsController.Divide(new FloatNumberMatrixData(255), highestValue));
                     matrix.SetValue(j, i, matrixValue);
-                }
-            }
+                } 
+            });
         }
     }
 }
